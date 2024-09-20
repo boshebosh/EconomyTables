@@ -1,0 +1,25 @@
+document.getElementById('dataForm').addEventListener('submit', function(event) {
+    event.preventDefault();  // Останавливаем отправку формы
+
+    // Получаем введённые данные
+    const categoryName = document.getElementById('categoryName').value;
+    const categoryValues = document.getElementById('categoryValues').value.split(',').map(value => value.trim());
+
+    // Создаём новую строку таблицы
+    const tableBody = document.querySelector('#dataTable tbody');
+    const newRow = document.createElement('tr');
+
+    const categoryCell = document.createElement('td');
+    categoryCell.textContent = categoryName;
+    
+    const valuesCell = document.createElement('td');
+    valuesCell.textContent = categoryValues.join(', ');
+
+    newRow.appendChild(categoryCell);
+    newRow.appendChild(valuesCell);
+    tableBody.appendChild(newRow);
+
+    // Очищаем форму после добавления данных
+    document.getElementById('categoryName').value = '';
+    document.getElementById('categoryValues').value = '';
+});
